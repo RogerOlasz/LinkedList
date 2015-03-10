@@ -18,6 +18,11 @@ class SList
 			start = NULL;
 		}
 
+		~SList()
+		{
+			SList::DelList();
+		}
+
 		void Add(int valor)
 		{
 			node* new_node = new node;
@@ -64,9 +69,9 @@ class SList
 			{
 					while (start->next != NULL)
 					{
-						node* new_node_delete = start;
+						node* tmp_node_delete = start;
 						start = start->next;
-						delete new_node_delete;
+						delete tmp_node_delete;
 					}
 				delete start;
 				start = NULL;
