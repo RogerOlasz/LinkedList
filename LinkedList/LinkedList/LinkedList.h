@@ -39,12 +39,12 @@ class SList
 
 		void Del(node* delN)
 		{
-			if (delN != NULL)
+			if (delN != NULL && start  != NULL)
 				{
 				if (delN != start)
 					{
 						node* tmp = start;
-						while (tmp->next != delN)
+						while (tmp->next != delN && tmp->next != NULL)
 						{
 							tmp = tmp->next;
 						}
@@ -56,6 +56,21 @@ class SList
 					}
 				delete delN;
 				}
+		}
+
+		void DelList()
+		{
+			if (start != NULL)
+			{
+					while (start->next != NULL)
+					{
+						node* new_node_delete = start;
+						start = start->next;
+						delete new_node_delete;
+					}
+				delete start;
+				start = NULL;
+			}
 		}
 
 		unsigned int count() const
