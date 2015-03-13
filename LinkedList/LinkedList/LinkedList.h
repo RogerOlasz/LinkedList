@@ -1,15 +1,20 @@
+#ifndef __LinkedList_H__
+#define __LinkedList_H__
+
 #include <iostream>
 
+template<class Type>
 struct node
 {
-	int value;
-	node* next;
+	Type value;
+	node<Type>* next;
 };
 
+template<class Type>
 class SList
 {
 	private:
-		node* start;
+		node<Type>* start;
 
 	public:
 		
@@ -23,7 +28,7 @@ class SList
 			SList::DelList();
 		}
 
-		void Add(int valor)
+		void Add(Type valor)
 		{
 			node* new_node = new node;
 			new_node->value = valor;
@@ -89,3 +94,5 @@ class SList
 		}
 
 };
+
+#endif //__LinkedList_H__
