@@ -39,7 +39,11 @@ class DynArray
 
 		}
 
-		int& operator[](unsigned int index) 
+		int& operator[](unsigned int index)
+		{
+
+		}
+		const int& operator[](unsigned int index) const
 		{
 
 		}
