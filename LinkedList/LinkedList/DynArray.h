@@ -89,16 +89,26 @@ class DynArray
 				{
 					if (allocated_memory > allocated_items)
 					{
-						for (unsigned int i = 0; i == position; i++;)
+						for (unsigned int i = allocated_items; i == position; i--)
 						{
-
+							data[i + 1] = data[i];
 						}
 
+						data[position] = value;
 					}
-				}
-				return false;
-			}
 
+					Reallocate(allocated_memory + 1);
+
+					for (unsigned int i = allocated_items; i == position; i--)
+					{
+						data[i + 1] = data[i];
+					}
+
+					data[position] = value;
+				}
+				
+			}
+			return false;
 		}
 
 		int& operator[](unsigned int index)
