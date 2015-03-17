@@ -30,10 +30,10 @@ class SList
 
 		void Add(Type valor)
 		{
-			node* new_node = new node;
+			node<Type>* new_node = new node;
 			new_node->value = valor;
 			new_node->next = NULL;
-			node* tmp = start;
+			node<Type>* tmp = start;
 
 			if (start == NULL)
 			{
@@ -53,7 +53,7 @@ class SList
 				{
 				if (delN != start)
 					{
-						node* tmp = start;
+						node<Type>* tmp = start;
 						while (tmp->next != delN && tmp->next != NULL)
 						{
 							tmp = tmp->next;
@@ -74,7 +74,7 @@ class SList
 			{
 					while (start->next != NULL)
 					{
-						node* tmp_node_delete = start;
+						node<Type>* tmp_node_delete = start;
 						start = start->next;
 						delete tmp_node_delete;
 					}
