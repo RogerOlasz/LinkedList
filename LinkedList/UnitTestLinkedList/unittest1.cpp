@@ -13,9 +13,7 @@ namespace UnitTestLinkedList
 		
 		TEST_METHOD(TestMethod1)
 		{
-			SList list1;
-
-			list1.Add(5);
+			
 
 
 		}
