@@ -81,33 +81,46 @@ class DynArray
 			return 666;
 		}
 
-		bool Insert(int value, unsigned int position)
+		void Clear()
 		{
 			if (data != NULL)
 			{
+				allocated_items = 0;
+			}
+			
+		}
+
+		bool Insert(Type value, unsigned int position)
+		{
 				if (position <= allocated_items)
 				{
-					if (allocated_memory > allocated_items)
-					{
-						for (unsigned int i = allocated_items; i == position; i--)
-						{
-							data[i + 1] = data[i];
-						}
+					Type* tmp = new Type[allocated_memory];
 
-						data[position] = value;
+					for (unsigned int i = 0; i <= allocated_items; i++)
+					{
+						tmp[i] = data[i];
 					}
 
-					Reallocate(allocated_memory + 1);
-
-					for (unsigned int i = allocated_items; i == position; i--)
+					if (allocated_memory < allocated_items)
 					{
-						data[i + 1] = data[i];
+						Reallocate(allocated_memory + 1);
 					}
 
-					data[position] = value;
+					for (unsigned int i = 0; i < position; i++)
+					{
+						data[i] = tmp[i];
+					}
+
+					data[position] = value;	
+
+					for (unsigned int i = position; i == allocated_items ; i++)
+					{
+						data[i + 1] = tmp[i];
+					}
+
+					allocated_items++;
+					return true;
 				}
-				
-			}
 			return false;
 		}
 
