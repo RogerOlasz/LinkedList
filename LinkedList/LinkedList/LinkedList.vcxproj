@@ -65,8 +65,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DynArray.h" />
-    <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="LinkedListX2.h" />
+    <ClInclude Include="SList.h" />
+    <ClInclude Include="DList.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>

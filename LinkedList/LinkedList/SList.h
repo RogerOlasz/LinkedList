@@ -4,17 +4,17 @@
 #include <iostream>
 
 template<class Type>
-struct node
+struct Node
 {
 	Type value;
-	node<Type>* next;
+	Node<Type>* next;
 };
 
 template<class Type>
 class SList
 {
 	private:
-		node<Type>* start;
+		Node<Type>* start;
 
 	public:
 		
@@ -30,10 +30,10 @@ class SList
 
 		void Add(Type valor)
 		{
-			node<Type>* new_node = new node;
+			Node<Type>* new_node = new Node;
 			new_node->value = valor;
 			new_node->next = NULL;
-			node<Type>* tmp = start;
+			Node<Type>* tmp = start;
 
 			if (start == NULL)
 			{
@@ -47,13 +47,13 @@ class SList
 			tmp->next = new_node;
 		}
 
-		void Del(node* delN)
+		void Del(Node* delN)
 		{
 			if (delN != NULL && start  != NULL)
 				{
 				if (delN != start)
 					{
-						node<Type>* tmp = start;
+						Node<Type>* tmp = start;
 						while (tmp->next != delN && tmp->next != NULL)
 						{
 							tmp = tmp->next;
@@ -74,9 +74,9 @@ class SList
 			{
 					while (start->next != NULL)
 					{
-						node<Type>* tmp_node_delete = start;
+						Node<Type>* tmp_Node_delete = start;
 						start = start->next;
-						delete tmp_node_delete;
+						delete tmp_Node_delete;
 					}
 				delete start;
 				start = NULL;
