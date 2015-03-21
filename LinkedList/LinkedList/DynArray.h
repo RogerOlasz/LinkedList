@@ -13,6 +13,33 @@ class DynArray
 		unsigned int allocated_memory;
 		unsigned int allocated_items;
 
+		void Reallocate(unsigned int new_memory_size)
+				{
+					if (data != NULL)
+					{
+						Type* tmp = new Type[allocated_memory];
+
+						for (unsigned int i = 0; i < allocated_items; i++)
+						{
+							tmp[i] = data[i];
+						}
+
+						delete[] data;
+						allocated_memory = new_memory_size;
+						data = new Type[allocated_memory];
+
+						for (unsigned int i = 0; i < allocated_items; i++)
+						{
+							data[i] = tmp[i];
+						}
+					}
+					else
+					{
+						delete data;
+						allocated_memory = new_memory_size;
+						data = new Type[allocated_memory];
+					}
+				}
 	public:
 
 		DynArray() :data(NULL), allocated_memory(0), allocated_items(0) {}
@@ -21,32 +48,14 @@ class DynArray
 
 		~DynArray(){ if (data != NULL) delete[] data;}
 
-		void Reallocate(unsigned int new_memory_size)
+		unsigned int getAllocatedItems() const
 		{
-			if (data != NULL)
-			{
-				Type* tmp = new Type[allocated_memory];
+			return allocated_items;
+		}
 
-				for (unsigned int i = 0; i < allocated_items; i++)
-				{
-					tmp[i] = data[i];
-				}
-
-				delete[] data;
-				allocated_memory = new_memory_size;
-				data = new Type[allocated_memory];
-
-				for (unsigned int i = 0; i < allocated_items; i++)
-				{
-					data[i] = tmp[i];
-				}
-			}
-			else
-			{
-				delete data;
-				allocated_memory = new_memory_size;
-				data = new Type[allocated_memory];
-			}
+		unsigned int getAllocatedMemory() const
+		{
+			return allocated_memory;
 		}
 
 		void PushBack(Type value)
@@ -92,34 +101,35 @@ class DynArray
 
 		bool Insert(Type value, unsigned int position)
 		{
-				if (position <= allocated_items)
+			if (position <= allocated_items)
+			{
+				Type* tmp = new Type[allocated_memory];
+
+				for (unsigned int i = 0; i < allocated_items; i++)
 				{
-					Type* tmp = new Type[allocated_memory];
+					tmp[i] = data[i];
+				}
 
-					for (unsigned int i = 0; i <= allocated_items; i++)
-					{
-						tmp[i] = data[i];
-					}
+				if (allocated_memory <= allocated_items)
+				{
+					Reallocate(allocated_memory + 1);
+				}
 
-					if (allocated_memory < allocated_items)
-					{
-						Reallocate(allocated_memory + 1);
-					}
+				for (unsigned int i = 0; i < position; i++)
+				{
+					data[i] = tmp[i];
+				}
 
-					for (unsigned int i = 0; i < position; i++)
-					{
-						data[i] = tmp[i];
-					}
+				data[position] = value;	
 
-					data[position] = value;	
+				for (unsigned int i = position; i == allocated_items ; i++)
+				{
+					data[i + 1] = tmp[i];
+				}
 
-					for (unsigned int i = position; i == allocated_items ; i++)
-					{
-						data[i + 1] = tmp[i];
-					}
-
-					allocated_items++;
-					return true;
+				allocated_items++;
+				delete[] tmp;
+				return true;
 				}
 			return false;
 		}
