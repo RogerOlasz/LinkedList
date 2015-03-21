@@ -87,7 +87,7 @@ class DynArray
 					return data[allocated_items];
 				}
 			}
-			return 666;
+			return 666; //It's just an ERROR.
 		}
 
 		void Clear()

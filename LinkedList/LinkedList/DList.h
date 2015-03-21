@@ -63,23 +63,6 @@ public:
 		}
 	}
 
-	DNode<Type>* getNodeAtPos(unsigned int position) const
-	{
-		if (start != NULL && position < Count())
-		{
-			unsigned int position_counter = 0;
-			DNode<Type>* tmp = start;
-
-			while (position_counter != _pos)
-			{
-				tmp = tmp->next;
-				position_counter++;
-			}
-			return tmp;
-		}
-		return NULL;
-	}
-
 	bool Del(DNode<Type>* delete_node)
 	{
 		if (start != NULL && delete_node != NULL)
@@ -140,6 +123,22 @@ public:
 		return false;
 	}
 
+	DNode<Type>* getNodeAtPos(unsigned int position) const
+		{
+			if (start != NULL && position < Count())
+			{
+				unsigned int position_counter = 0;
+				DNode<Type>* tmp = start;
+
+				while (position_counter != _pos)
+				{
+					tmp = tmp->next;
+					position_counter++;
+				}
+				return tmp;
+			}
+			return NULL;
+		}
 };
 
 #endif //__DList_H__

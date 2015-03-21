@@ -47,7 +47,7 @@ class SList
 			tmp->next = new_node;
 		}
 
-		void Del(Node* delN)
+		bool Del(Node* delN)
 		{
 			if (delN != NULL && start  != NULL)
 				{
@@ -65,7 +65,9 @@ class SList
 					start = start->next;
 					}
 				delete delN;
+				return true;
 				}
+			return false;
 		}
 
 		void DelList()
@@ -83,7 +85,7 @@ class SList
 			}
 		}
 
-		unsigned int count() const
+		unsigned int Count() const
 		{
 			unsigned int result=0;
 			while (start->next!=NULL)
@@ -93,6 +95,26 @@ class SList
 			return result;
 		}
 
+		Node<Type>* getNodeAtPos(unsigned int position) const
+		{
+			if (start != NULL && position < Count())
+			{
+				Node<Type>* tmp = start;
+				int position_counter = 0;
+
+				while (position_counter != position)
+				{
+					tmp = tmp->next;
+					position_counter++;
+				}
+				return tmp;
+			}
+			else
+			{
+				return NULL;
+			}
+				
+		}
 };
 
 #endif //__LinkedList_H__
