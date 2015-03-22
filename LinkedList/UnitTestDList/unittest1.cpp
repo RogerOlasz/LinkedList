@@ -1,11 +1,13 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
+#include "../LinkedList/DList.h"
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTestDList
 {		
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(UnitTestDList)
 	{
 	public:
 		
