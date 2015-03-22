@@ -1,7 +1,5 @@
-#ifndef __LinkedList_H__
-#define __LinkedList_H__
-
-#include <iostream>
+#ifndef __SList_H__
+#define __SList_H__
 
 template<class Type>
 struct Node
@@ -25,52 +23,60 @@ class SList
 
 		~SList()
 		{
-			SList::DelList();
+			DelList();
 		}
 
 		void Add(Type valor)
 		{
-			Node<Type>* new_node = new Node;
+			Node<Type>* new_node = new Node<Type>;
 			new_node->value = valor;
 			new_node->next = NULL;
-			Node<Type>* tmp = start;
-
-			if (start == NULL)
+			
+			if (start != NULL)
 			{
+				Node<Type>* tmp = start;
+
+				while(tmp->next != NULL)
+				{
+					tmp = tmp->next;
+				}
 				tmp->next = new_node;
 			}
-
-			while(tmp!=NULL)
+			else
 			{
-				tmp = tmp->next;
+				start = new_node;
 			}
-			tmp->next = new_node;
+			
 		}
 
-		bool Del(Node* delN)
+		bool Del(Node<Type>* delN)
 		{
 			if (delN != NULL && start  != NULL)
 				{
 				if (delN != start)
 					{
 						Node<Type>* tmp = start;
-						while (tmp->next != delN && tmp->next != NULL)
+						while (tmp->next != delN)
 						{
+							if (tmp->next == NULL)
+							{
+								return false;
+							}
 							tmp = tmp->next;
 						}
 						tmp->next = delN->next;
 					}
 				else
-					{
+				{
 					start = start->next;
-					}
+				}
 				delete delN;
 				return true;
 				}
 			return false;
 		}
 
-		void DelList()
+		bool DelList()
 		{
 			if (start != NULL)
 			{
@@ -82,14 +88,18 @@ class SList
 					}
 				delete start;
 				start = NULL;
+				return true;
 			}
+			return false;
 		}
 
 		unsigned int Count() const
 		{
 			unsigned int result=0;
-			while (start->next!=NULL)
+			Node<Type>* tmp = start;
+			while (tmp != NULL)
 			{
+				tmp = tmp->next;
 				result++;
 			}
 			return result;
@@ -117,4 +127,4 @@ class SList
 		}
 };
 
-#endif //__LinkedList_H__
+#endif //__SList_H__
