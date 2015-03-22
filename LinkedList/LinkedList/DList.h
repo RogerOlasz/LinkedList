@@ -107,7 +107,7 @@ public:
 		return false;
 	}
 
-	bool DelAll() 
+	bool DelList() 
 	{
 		if (start != NULL)
 		{
@@ -130,7 +130,7 @@ public:
 				unsigned int position_counter = 0;
 				DNode<Type>* tmp = start;
 
-				while (position_counter != _pos)
+				while (position_counter != position)
 				{
 					tmp = tmp->next;
 					position_counter++;
