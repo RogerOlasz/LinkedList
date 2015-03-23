@@ -44,7 +44,7 @@ class DynArray
 
 		DynArray() :data(NULL), allocated_memory(0), allocated_items(0) {}
 
-		DynArray(unsigned int mem_size) { Reallocate(mem_size); }
+		DynArray(unsigned int mem_size) : data(NULL), allocated_items(0) { Reallocate(mem_size); }
 
 		~DynArray(){ if (data != NULL) delete[] data;}
 
