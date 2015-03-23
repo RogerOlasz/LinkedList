@@ -80,13 +80,16 @@ public:
 					}	
 				}
 
-				tmp = tmp->next;
 				tmp->next = delete_node->next;
 
 				if (delete_node->next != NULL)
 				{
 					delete_node->next->previous = tmp;
-				}	
+				}
+				else
+				{
+					tmp->next = NULL;
+				}
 			}
 			else
 			{
