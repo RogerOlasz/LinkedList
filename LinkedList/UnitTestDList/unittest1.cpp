@@ -16,7 +16,7 @@ namespace UnitTestDList
 			DList<int> double_list1;
 
 			Assert::IsTrue(double_list1.Count() == 0);
-			Assert::IsFalse(double_list1.Del(double_list1.getNodeAtPos(0)) == true);
+			Assert::IsTrue(double_list1.Del(double_list1.getNodeAtPos(0)) == false);
 			Assert::IsNull(double_list1.getNodeAtPos(3));
 		}
 
@@ -53,8 +53,8 @@ namespace UnitTestDList
 
 			double_list1.Add(-2);
 			double_list1.Add(9);
-			double_list1.Add(30);
-			double_list1.Add(-58);
+			double_list1.Add(-30);
+			double_list1.Add(58);
 
 			Assert::IsFalse(double_list1.Del(double_list1.getNodeAtPos(-1)) == true);
 			Assert::IsTrue(double_list1.Del(double_list1.getNodeAtPos(3)) == true);
